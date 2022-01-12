@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Iterator;
 
 /**
  * 1. 파라미터 전송 기능 **/
@@ -16,9 +17,10 @@ public class RequestParamServlet extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("[전체 파라미터 조회] - start");
 
+        System.out.println(req.getParameterNames());
+        System.out.println(req.getParameterNames().asIterator());
         req.getParameterNames().asIterator()
-                .forEachRemaining(
-                        paramName -> System.out.println(paramName + " = "+ req.getParameter(paramName)));
+                .forEachRemaining(paramName -> System.out.println(paramName + " = "+ req.getParameter(paramName)));
 
         System.out.println("[전체 파라미터 조회] - end");
         System.out.println();

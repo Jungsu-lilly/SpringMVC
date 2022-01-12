@@ -11,6 +11,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class MemberRepositoryTest {
+    // getInstance()는 static method 이므로 인스턴스를 생성하지 않아도 호출이 가능.
     MemberRepository memberRepository = MemberRepository.getInstance();
 
     @AfterEach
