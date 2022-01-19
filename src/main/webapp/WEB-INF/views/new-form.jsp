@@ -10,7 +10,7 @@
 <form action="save" method="post">
     username: <input type="text" name="username" />
     age: <input type="text" name="age" />
-    <button type="submit">전송</button>
+    <button type="submit">전송하십쇼</button>
 </form>
 </body>
 </html>
