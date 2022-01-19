@@ -37,7 +37,7 @@ public class FrontControllerServletV3 extends HttpServlet {
             return;
         }
 
-        // paramMap 넘겨줌: 이 경우 paramMap을 만드는 경우는 MemberSaveController 밖에 없다. 나머지는 없음!
+        // paramMap 넘겨줌: 이 경우 paramMap 을 만드는 경우는 MemberSaveController 밖에 없음.
         Map<String, String> paramMap = createParamMap(request);
         ModelView mv = controller.process(paramMap);
 
