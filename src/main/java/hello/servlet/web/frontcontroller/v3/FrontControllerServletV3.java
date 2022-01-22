@@ -30,20 +30,24 @@ public class FrontControllerServletV3 extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String requestURI = request.getRequestURI();
-
         ControllerV3 controller = controllerMap.get(requestURI);
-        if(controller == null){
+
+        if(controller == null){ // 주소 경로가 없을 경우
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
 
-        // paramMap 넘겨줌: 이 경우 paramMap 을 만드는 경우는 MemberSaveController 밖에 없음.
-        Map<String, String> paramMap = createParamMap(request);
+        Map<String, String> paramMap = makeParamMap(request);
         ModelView mv = controller.process(paramMap);
 
-        // mv.getViewName(); // 논리이름 "new-form"
         MyView view = viewResolver(mv);
         view.render(mv.getModel(), request, response);
+    }
+
+    private Map<String, String> makeParamMap(HttpServletRequest request) {
+        Map<String, String> paramMap = new HashMap<>();
+        request.getParameterNames().asIterator().forEachRemaining(paramName -> paramMap.put(paramName, request.getParameter(paramName)));
+        return paramMap;
     }
 
     private MyView viewResolver(ModelView mv) {
@@ -51,12 +55,12 @@ public class FrontControllerServletV3 extends HttpServlet {
         return view;
     }
 
-    private Map<String, String> createParamMap(HttpServletRequest request) {
-        Map<String, String> paramMap = new HashMap<>();
-        request.getParameterNames().asIterator()
-                .forEachRemaining(paramName -> paramMap.put(paramName, request.getParameter(paramName)));
-        return paramMap;
-    }
+//    private Map<String, String> createParamMap(HttpServletRequest request) {
+//        Map<String, String> paramMap = new HashMap<>();
+//        request.getParameterNames().asIterator()
+//                .forEachRemaining(paramName -> paramMap.put(paramName, request.getParameter(paramName)));
+//        return paramMap;
+//    }
 
 }
 
