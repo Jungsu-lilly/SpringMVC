@@ -51,6 +51,11 @@ public class FrontControllerServletV5 extends HttpServlet {
     }
 
     @Override
+    protected long getLastModified(HttpServletRequest req) {
+        return super.getLastModified(req);
+    }
+
+    @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 1. 핸들러 조회
         Object handler = getHandler(request);
