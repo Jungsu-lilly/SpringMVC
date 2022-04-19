@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 public class MemberRepository {
-    private static Map<Long, Member> store = new HashMap<>();
-    private static long sequence = 0L;
+    private Map<Long, Member> store = new HashMap<>();
+    private long sequence = 0L;
 
     // 싱글톤으로 만들기
     private static final MemberRepository instance = new MemberRepository();
@@ -16,6 +16,7 @@ public class MemberRepository {
         return instance;
     }
 
+    // private 으로 생성자 막기.
     private MemberRepository(){
     }
 

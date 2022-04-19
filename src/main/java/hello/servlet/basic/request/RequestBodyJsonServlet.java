@@ -23,6 +23,7 @@ public class RequestBodyJsonServlet extends HttpServlet {
         // message body 의 내용을 바이트코드로 바로 얻을 수 있다.
         ServletInputStream inputStream = request.getInputStream();
         String messageBody = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
+
         System.out.println("messageBody = " + messageBody);
 
         HelloData helloData = objectMapper.readValue(messageBody, HelloData.class);

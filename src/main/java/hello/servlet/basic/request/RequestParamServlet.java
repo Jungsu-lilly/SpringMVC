@@ -18,7 +18,6 @@ public class RequestParamServlet extends HttpServlet {
         System.out.println("[전체 파라미터 조회] - start");
 
         System.out.println(req.getParameterNames());
-        System.out.println(req.getParameterNames().asIterator());
         req.getParameterNames().asIterator()
                 .forEachRemaining(paramName -> System.out.println(paramName + " = "+ req.getParameter(paramName)));
 
@@ -34,8 +33,12 @@ public class RequestParamServlet extends HttpServlet {
 
         System.out.println("[이름이 같은 복수 파라미터 조회]");
         String[] parameterValues = req.getParameterValues("username");
+        String[] ages = req.getParameterValues("age");
         for(String name : parameterValues){
             System.out.println(name);
+        }
+        for (String s : ages) {
+            System.out.println(s);
         }
 
         resp.getWriter().write("OK");
